@@ -1,11 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-
 const mongoose = require("mongoose");
-require("dotenv").config();
-
 const authRoutes = require("./routes/authRoutes");
-
+const { protect } = require("./middleware/authMiddleware");
+require("dotenv").config();
 const app = express();
 
 app.use(cors());
@@ -15,6 +13,13 @@ app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => {
   res.json({
     message: "E-commerce API is running!"
+  });
+});
+
+app.get("/api/protected", protect, (req, res) => {
+  res.json({
+    message: "You accessed a protected route!",
+    user: req.user
   });
 });
 
