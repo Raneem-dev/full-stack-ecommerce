@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ### Protected route
 GET http://localhost:5000/api/protected
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer TOKEN
 
 ### Get all products
 GET http://localhost:5000/api/products
@@ -30,21 +30,21 @@ GET http://localhost:5000/api/products/6ab9835c0d6854bef0c03de3
 ### Create a product
 POST http://localhost:5000/api/products
 Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer TOKEN
 
 {
-  "name": "Gaming Mouse",
-  "description": "Wireless gaming mouse",
-  "price": 49.99,
-  "image": "https://example.com/mouse.jpg",
+  "name": "Smart Watch",
+  "description": "Modern smart watch with fitness tracking",
+  "price": 129.99,
+  "image": "https://example.com/watch.jpg",
   "category": "Electronics",
-  "stock": 20
+  "stock": 8
 }
 
 ### Update a product as admin
 PUT http://localhost:5000/api/products/6ab988f3020ed098b4bd54f2
 Content-Type: application/json
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer TOKEN
 
 {
   "price": 39.99
@@ -52,4 +52,4 @@ Authorization: Bearer YOUR_JWT_TOKEN
 
 ### Delete a product as admin
 DELETE http://localhost:5000/api/products/6ab988f3020ed098b4bd54f2
-Authorization: Bearer YOUR_JWT_TOKEN
+Authorization: Bearer TOKEN
