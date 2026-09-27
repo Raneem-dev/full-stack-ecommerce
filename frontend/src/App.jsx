@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import ProductDetails from "./pages/ProductDetails";
 import "./App.css";
 
 function App() {
@@ -16,39 +18,51 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <header>
-        <h1>ShopEase</h1>
+  <div>
+    <header>
+      <h1>ShopEase</h1>
 
-        <nav>
-          <a href="/">Home</a>
-          <a href="/products">Products</a>
-          <a href="/cart">Cart</a>
-          <a href="/login">Login</a>
-        </nav>
-      </header>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/">Products</Link>
+        <Link to="/cart">Cart</Link>
+        <Link to="/login">Login</Link>
+      </nav>
+    </header>
 
-      <main>
-        <h2>Our Products</h2>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <main>
+            <h2>Our Products</h2>
 
-        <div className="products-grid">
-          {products.map((product) => (
-            <div className="product-card" key={product._id}>
-              <img
-                src={product.image}
-                alt={product.name}
-                width="200"
-              />
+            <div className="products-grid">
+              {products.map((product) => (
+                <div className="product-card" key={product._id}>
+                  <img src={product.image} alt={product.name} />
 
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <p className="product-price">${product.price}</p>
-              <p>Stock: {product.stock}</p>
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                  <p className="product-price">${product.price}</p>
+                  <p>Stock: {product.stock}</p>
+
+                  <Link to={`/products/${product._id}`}>
+                    View Product
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </main>
-    </div>
+          </main>
+        }
+      />
+
+      <Route
+        path="/products/:id"
+        element={<ProductDetails />}
+      />
+    </Routes>
+  </div>
   );
 }
 
