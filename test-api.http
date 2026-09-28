@@ -13,8 +13,8 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test@example.com",
-  "password": "password123"
+  "email": "customer@example.com",
+  "password": "customer123"
 }
 
 ### Protected route
@@ -52,4 +52,25 @@ Authorization: Bearer TOKEN
 
 ### Delete a product as admin
 DELETE http://localhost:5000/api/products/6ab988f3020ed098b4bd54f2
+Authorization: Bearer TOKEN
+
+### Create Order
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+Authorization: Bearer TOKEN
+
+{
+  "items": [
+    {
+      "product": "6ab9835c0d6854bef0c03de3",
+      "name": "Wireless Headphones",
+      "price": 79.99,
+      "quantity": 2
+    }
+  ],
+  "totalPrice": 159.98
+}
+
+### Get My Orders
+GET http://localhost:5000/api/orders/my-orders
 Authorization: Bearer TOKEN
